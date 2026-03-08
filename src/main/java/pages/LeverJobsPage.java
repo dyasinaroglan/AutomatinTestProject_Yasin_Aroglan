@@ -14,7 +14,9 @@ public class LeverJobsPage extends BasePage {
     private final By departmentTitle = By.xpath("//div[contains(@class, 'posting-category-title') and contains(text(), 'Quality Assurance')]");
     private final By postingNames = By.cssSelector("[data-qa='posting-name']");
     private final By postingLocations = By.xpath("//span[contains(@class, 'posting-category') and contains(@class, 'location')]");
+    private final By applyButtons = By.cssSelector("a.postings-btn.template-btn-submit");
 
+    private final By postingLinks = By.cssSelector("a.posting-title");
 
     public LeverJobsPage(WebDriver driver) {
         super(driver);
@@ -66,5 +68,11 @@ public class LeverJobsPage extends BasePage {
             }
         }
         return !getAllPositionNames().isEmpty();
+    }
+    public void clickViewRole(int index) {
+        clickElementByIndex(postingLinks, index);
+    }
+    public void clickApplyForJob(int index) {
+        clickElementByIndex(applyButtons, index);
     }
 }

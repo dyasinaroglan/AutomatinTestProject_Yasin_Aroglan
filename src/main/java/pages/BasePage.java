@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public abstract class BasePage {
 
@@ -84,5 +85,12 @@ public abstract class BasePage {
             clickWithJS(cookieAcceptButton);
         } catch (Exception e) {
         }
+    }
+    protected void clickElementByIndex(By locator, int index) {
+        List<WebElement> elements = driver.findElements(locator);
+        if (elements.isEmpty()) {
+            throw new RuntimeException("Element bulunamadı: " + locator);
+        }
+        elements.get(index).click();
     }
 }
