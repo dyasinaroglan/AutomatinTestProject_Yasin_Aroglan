@@ -14,10 +14,6 @@ public class HomePage extends BasePage {
     private final By navigationBar = By.id("navigation");
     private final By PlatformButton = By.cssSelector("[data-text='Platform']");
 
-    private final By industriesButton = By.cssSelector("[data-text='Industries']");
-    private final By customersLinkButton = By.cssSelector("[data-text='Customers']");
-    private final By resourcesButton = By.cssSelector("[data-text='Resources']");
-
     private final By heroSection = By.cssSelector("section.homepage-hero");
     private final By heroTitle = By.cssSelector(".homepage-hero-content-title h1");
 
@@ -32,13 +28,6 @@ public class HomePage extends BasePage {
     public HomePage open() {
         driver.get(url);
         return this;
-    }
-
-    public void acceptCookies() {
-        try {
-            click(acceptCookie);
-        } catch (TimeoutException e) {
-        }
     }
     public boolean isNavigationBarDisplayed(){
         return isElementDisplayed(navigationBar);

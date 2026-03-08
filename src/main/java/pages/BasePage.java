@@ -78,4 +78,11 @@ public abstract class BasePage {
                 element
         );
     }
+    public void acceptCookies() {
+        By cookieAcceptButton = By.cssSelector("#wt-cli-accept-all-btn");
+        try {
+            clickWithJS(cookieAcceptButton);
+        } catch (Exception e) {
+        }
+    }
 }
