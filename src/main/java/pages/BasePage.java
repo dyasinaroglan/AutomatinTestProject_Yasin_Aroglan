@@ -1,5 +1,6 @@
 package pages;
 
+import config.ConfigReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -14,7 +15,7 @@ public abstract class BasePage {
     protected WebDriverWait wait;
     protected Actions actions;
 
-    private static final Duration defaultWait = Duration.ofSeconds(10);
+    private static final Duration defaultWait = Duration.ofSeconds(ConfigReader.getInt("default.timeout"));
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -36,7 +37,7 @@ public abstract class BasePage {
     }
 
     protected void click(By locator) {
-        waitForClickability(locator);
+        waitForClickability(locator).click();
     }
 
     protected String getText(By locator) {
@@ -50,14 +51,31 @@ public abstract class BasePage {
             return false;
         }
     }
-    protected String getCurrentUrl(){
+
+    protected String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
-    protected String getPageTitle(){
+
+    protected String getPageTitle() {
         return driver.getTitle();
     }
+
     protected void clickWithJS(By locator) {
         WebElement element = waitForVisibility(locator);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+
+    protected void scrollToBottom() {
+        ((JavascriptExecutor) driver).executeScript(
+                "window.scrollTo(0, document.body.scrollHeight);"
+        );
+    }
+
+    protected void scrollToElement(By locator) {
+        WebElement element = waitForVisibility(locator);
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
+                element
+        );
     }
 }
