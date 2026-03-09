@@ -2,20 +2,16 @@ package pages;
 
 import config.ConfigReader;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
 
     private static final String url = ConfigReader.get("base.url");
 
-    private final By acceptCookie = By.cssSelector("#wt-cli-accept-all-btn, .wt-cli-accept-all-btn");
-
     private final By navigationBar = By.id("navigation");
-    private final By PlatformButton = By.cssSelector("[data-text='Platform']");
+    private final By platformButton = By.cssSelector("[data-text='Platform']");
 
     private final By heroSection = By.cssSelector("section.homepage-hero");
-    private final By heroTitle = By.cssSelector(".homepage-hero-content-title h1");
 
     private final By partnersLogoReel = By.cssSelector(".homepage-hero-logo-reel");
 
@@ -33,13 +29,10 @@ public class HomePage extends BasePage {
         return isElementDisplayed(navigationBar);
     }
     public boolean isNavigationBarPlatformDisplayed(){
-        return isElementDisplayed(PlatformButton);
+        return isElementDisplayed(platformButton);
     }
     public boolean isHeroSectionDisplayed() {
         return isElementDisplayed(heroSection);
-    }
-    public boolean isHeroTitleDisplayed() {
-        return isElementDisplayed(heroTitle);
     }
     public boolean isPartnersDisplayed(){
         return isElementDisplayed(partnersLogoReel);

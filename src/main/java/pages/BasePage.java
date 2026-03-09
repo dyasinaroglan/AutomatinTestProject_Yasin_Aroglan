@@ -57,10 +57,6 @@ public abstract class BasePage {
         return driver.getCurrentUrl();
     }
 
-    protected String getPageTitle() {
-        return driver.getTitle();
-    }
-
     protected void clickWithJS(By locator) {
         WebElement element = waitForVisibility(locator);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
@@ -83,7 +79,7 @@ public abstract class BasePage {
         By cookieAcceptButton = By.cssSelector("#wt-cli-accept-all-btn");
         try {
             clickWithJS(cookieAcceptButton);
-        } catch (Exception e) {
+        } catch (TimeoutException e) {
         }
     }
     protected void clickElementByIndex(By locator, int index) {

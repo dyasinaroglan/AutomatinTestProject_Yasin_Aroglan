@@ -28,6 +28,7 @@ public class LeverJobsPage extends BasePage {
         click(openLocationFilter);
         return this;
     }
+
     public LeverJobsPage selectLocationByText(String locationText) {
         By option = By.xpath(
                 "//div[@class='filter-popup']//a[text()='" + locationText + "']"
@@ -35,9 +36,11 @@ public class LeverJobsPage extends BasePage {
         click(option);
         return this;
     }
+
     public String getDepartmentTitle() {
         return getText(departmentTitle);
     }
+
     public List<String> getAllPositionNames() {
         List<WebElement> titles = driver.findElements(postingNames);
         List<String> names = new ArrayList<>();
@@ -46,6 +49,7 @@ public class LeverJobsPage extends BasePage {
         }
         return names;
     }
+
     public List<String> getAllLocations() {
         List<WebElement> locs = driver.findElements(postingLocations);
         List<String> locations = new ArrayList<>();
@@ -54,13 +58,16 @@ public class LeverJobsPage extends BasePage {
         }
         return locations;
     }
+
     public boolean areAllLocationsContaining(String expectedLocation) {
-        for (String location : getAllLocations()) {
+        List<String> locations = getAllLocations();
+        if (locations.isEmpty()) return false;
+        for (String location : locations) {
             if (!location.toLowerCase().contains(expectedLocation.toLowerCase())) {
                 return false;
             }
         }
-        return !getAllLocations().isEmpty();
+        return true;
     }
 
     public boolean areAllPositionsContaining(String expectedText) {
@@ -71,15 +78,19 @@ public class LeverJobsPage extends BasePage {
         }
         return !getAllPositionNames().isEmpty();
     }
+
     public void clickViewRole(int index) {
         clickElementByIndex(postingLinks, index);
     }
+
     public void clickApplyForJob(int index) {
         clickElementByIndex(applyButtons, index);
     }
+
     public boolean isApplicationFormDisplayed() {
         return isElementDisplayed(applicationFormTitle);
     }
+
     public boolean isOnApplicationFormPage() {
         return getCurrentUrl().contains("/apply");
     }
