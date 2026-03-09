@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="QA Assessment Suite" parallel="methods" thread-count="2">
+<suite name="QA Assessment Suite" parallel="classes" thread-count="2">
 
     <listeners>
         <listener class-name="config.RetryTransformer"/>
@@ -14,7 +14,8 @@
             </run>
         </groups>
         <classes>
-            <class name="tests.InsiderTest"/>
+            <class name="tests.HomePageTest"/>
+            <class name="tests.QAJobsTest"/>
         </classes>
     </test>
 
@@ -25,7 +26,8 @@
             </run>
         </groups>
         <classes>
-            <class name="tests.InsiderTest"/>
+            <class name="tests.HomePageTest"/>
+            <class name="tests.QAJobsTest"/>
         </classes>
     </test>
 
