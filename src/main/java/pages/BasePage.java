@@ -53,7 +53,7 @@ public abstract class BasePage {
         }
     }
 
-    protected String getCurrentUrl() {
+    public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 
@@ -93,4 +93,5 @@ public abstract class BasePage {
         }
         elements.get(index).click();
     }
+
 }

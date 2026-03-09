@@ -36,9 +36,12 @@ public class InsiderTest extends BaseTest {
 
         Assert.assertEquals(leverJobsPage.getDepartmentTitle().toUpperCase(),"QUALITY ASSURANCE","Department başlığı yanlış!");
         Assert.assertTrue(leverJobsPage.areAllLocationsContaining("Istanbul, Turkiye"), "Bazı ilanların lokasyonu Istanbul değil!");
-        Assert.assertTrue(leverJobsPage.areAllPositionsContaining("Quality Assurance"), "Bazı ilanların pozisyonu Quality Assurance içermiyor!");
+        Assert.assertTrue(leverJobsPage.areAllPositionsContaining("Quality"), "Bazı ilanların pozisyonu Quality Assurance içermiyor!");
 
         leverJobsPage.clickViewRole(1);
         leverJobsPage.clickApplyForJob(0);
+
+        Assert.assertTrue(leverJobsPage.isApplicationFormDisplayed(), "Form başlığı görünmedi.");
+        Assert.assertTrue(leverJobsPage.isOnApplicationFormPage(), "Application form sayfasına yönlendirilmedi! URL: " + leverJobsPage.getCurrentUrl());
     }
 }

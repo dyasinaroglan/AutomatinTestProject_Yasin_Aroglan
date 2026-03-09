@@ -18,6 +18,8 @@ public class LeverJobsPage extends BasePage {
 
     private final By postingLinks = By.cssSelector("a.posting-title");
 
+    private final By applicationFormTitle = By.xpath("//*[contains(text(), 'Submit your application')]");
+
     public LeverJobsPage(WebDriver driver) {
         super(driver);
     }
@@ -74,5 +76,11 @@ public class LeverJobsPage extends BasePage {
     }
     public void clickApplyForJob(int index) {
         clickElementByIndex(applyButtons, index);
+    }
+    public boolean isApplicationFormDisplayed() {
+        return isElementDisplayed(applicationFormTitle);
+    }
+    public boolean isOnApplicationFormPage() {
+        return getCurrentUrl().contains("/apply");
     }
 }
