@@ -8,7 +8,7 @@ import pages.LeverJobsPage;
 
 public class InsiderTest extends BaseTest {
 
-    @Test(description = "Verify Insider home page is opened and all main blocks are loaded")
+    @Test(priority = 1, groups = {"smoke"}, description = "Verify Insider home page is opened and all main blocks are loaded")
     public void testHomePageLoaded(){
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -19,7 +19,8 @@ public class InsiderTest extends BaseTest {
         Assert.assertTrue(homePage.isPartnersDisplayed(), "Partners logo reel görünmüyor!");
         Assert.assertTrue(homePage.isFooterDisplayed(),"Footer görünmüyor!");
     }
-    @Test(description = "Verify QA jobs are listed and filtered correctly on Lever page")
+    @Test(priority = 2, groups = {"smoke", "regression"},
+            description = "Verify QA jobs are listed and filtered correctly on Lever page")
     public void testQAJobsFilterAndValidation(){
         CareersPage careersPage = new CareersPage(getDriver());
         LeverJobsPage leverJobsPage = new LeverJobsPage(getDriver());
